@@ -7,6 +7,8 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.ServiceFactory;
 
+import java.awt.*;
+
 public class Main {
 
 	public static void main(String[] args) {
