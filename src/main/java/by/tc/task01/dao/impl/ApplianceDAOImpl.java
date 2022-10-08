@@ -8,6 +8,11 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 
 	@Override
 	public Appliance find(Criteria criteria) {
+
+
+
+
+
 		// you may add your own code here
 		return null;
 	}
