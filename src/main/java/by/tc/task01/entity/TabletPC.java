@@ -3,6 +3,7 @@ package by.tc.task01.entity;
 import by.tc.task01.entity.criteria.SearchCriteria;
 
 import java.awt.*;
+import java.util.Locale;
 
 public class TabletPC extends Appliance{
 
@@ -25,12 +26,20 @@ public class TabletPC extends Appliance{
 
     @Override
     public boolean mathches(String key, Object value) {
+        Color clr = null;
+        if (SearchCriteria.TabletPC.valueOf(key) == SearchCriteria.TabletPC.COLOR){
+            try{
+                clr = (Color) Color.class.getField(value.toString().toLowerCase(Locale.ROOT)).get(null);
+            }
+            catch (Exception e){
+            }
+        }
         return switch (SearchCriteria.TabletPC.valueOf(key)){
             case BATTERY_CAPACITY -> battery_capacity == (Integer)value;
             case DISPLAY_INCHES -> display_inches == (Integer)value;
             case MEMORY_ROM -> memory_rom == (Integer)value;
             case FLASH_MEMORY_CAPACITY -> flash_memory_capacity == (Integer)value;
-            case COLOR -> color == Color.getColor((String)value);
+            case COLOR -> color == clr;
         };
     }
     // you may add your own code here

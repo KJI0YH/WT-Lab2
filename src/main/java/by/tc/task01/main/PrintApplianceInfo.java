@@ -2,13 +2,18 @@ package by.tc.task01.main;
 
 import by.tc.task01.entity.Appliance;
 
+import java.util.List;
+
 public class PrintApplianceInfo {
 	
-	public static void print(Appliance appliance) {
+	public static void print(List<Appliance> appliance) {
 		if (appliance == null)
 			System.out.println("Can not find result with this parameters");
 		else
-			System.out.println(appliance.toString());
+			for (Appliance appl: appliance) {
+				System.out.println(appl.toString());
+			}
+
 		
 	}
 }

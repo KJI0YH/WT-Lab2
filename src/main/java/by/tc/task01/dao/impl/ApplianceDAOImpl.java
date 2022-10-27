@@ -22,7 +22,7 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 	private static final String APPLIANCES_DB = "./src/main/resources/appliances_db.xml";
 
 	@Override
-	public Appliance find(Criteria criteria) {
+	public List<Appliance> find(Criteria criteria) {
 		List<Appliance> matches = new ArrayList<>();
 		try{
 
@@ -69,7 +69,7 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 			return null;
 		}
 		if (matches.size() != 0)
-			return matches.get(0);
+			return matches;
 		else
 			return null;
 

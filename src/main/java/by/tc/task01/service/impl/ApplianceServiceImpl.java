@@ -7,10 +7,12 @@ import by.tc.task01.entity.criteria.Criteria;
 import by.tc.task01.service.ApplianceService;
 import by.tc.task01.service.validation.Validator;
 
+import java.util.List;
+
 public class ApplianceServiceImpl implements ApplianceService{
 
 	@Override
-	public Appliance find(Criteria criteria) {
+	public List<Appliance> find(Criteria criteria) {
 		if (!Validator.criteriaValidator(criteria)) {
 			return null;
 		}

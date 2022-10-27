@@ -7,10 +7,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.awt.*;
+import java.lang.reflect.Field;
 
 public class TabletPCCreator implements ApplianceCreator {
 
-    private static final String BATTERY_CAPACITY = "battryCapacity";
+    private static final String BATTERY_CAPACITY = "batteryCapacity";
     private static final String DISPLAY_INCHES = "displayInches";
     private static final String MEMORY_ROM = "memoryRom";
     private static final String FLASH_MEMORY_CAPACITY = "flashMemoryCapacity";
@@ -20,15 +21,21 @@ public class TabletPCCreator implements ApplianceCreator {
     public Appliance create(NodeList nodes) {
         TabletPC tabletPC = new TabletPC();
 
-        for (int i =0; i < nodes.getLength(); i++){
-            if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE){
+        for (int i = 0; i < nodes.getLength(); i++) {
+            if (nodes.item(i).getNodeType() == Node.ELEMENT_NODE) {
                 String text = nodes.item(i).getTextContent();
-                switch (nodes.item(i).getNodeName()){
+                switch (nodes.item(i).getNodeName()) {
                     case BATTERY_CAPACITY -> tabletPC.battery_capacity = Integer.parseInt(text);
                     case DISPLAY_INCHES -> tabletPC.display_inches = Integer.parseInt(text);
                     case MEMORY_ROM -> tabletPC.memory_rom = Integer.parseInt(text);
                     case FLASH_MEMORY_CAPACITY -> tabletPC.flash_memory_capacity = Integer.parseInt(text);
-                    case COLOR -> tabletPC.color = Color.getColor(text);
+                    case COLOR -> {
+                        try {
+                            tabletPC.color = (Color) Color.class.getField(text).get(null);
+                        } catch (Exception e) {
+                            tabletPC = null;
+                        }
+                    }
                     default -> throw new IllegalArgumentException("No such appliance exists");
                 }
             }
