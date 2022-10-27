@@ -9,6 +9,9 @@ import org.w3c.dom.NodeList;
 import java.awt.*;
 import java.lang.reflect.Field;
 
+/**
+ * Represents creator of a tablet PC appliance
+ */
 public class TabletPCCreator implements ApplianceCreator {
 
     private static final String BATTERY_CAPACITY = "batteryCapacity";
@@ -17,6 +20,9 @@ public class TabletPCCreator implements ApplianceCreator {
     private static final String FLASH_MEMORY_CAPACITY = "flashMemoryCapacity";
     private static final String COLOR = "color";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appliance create(NodeList nodes) {
         TabletPC tabletPC = new TabletPC();

@@ -2,6 +2,9 @@ package by.tc.task01.entity;
 
 import by.tc.task01.entity.criteria.SearchCriteria;
 
+/**
+ * Represents the vacuum cleaner appliance
+ */
 public class VacuumCleaner extends Appliance{
 
     public enum FilterType{
@@ -27,6 +30,9 @@ public class VacuumCleaner extends Appliance{
                 power_consumption, filter_type.toString(), bag_type, wand_type, motor_speed_regulation, cleaning_width);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean mathches(String key, Object value) {
         return switch (SearchCriteria.VacuumCleaner.valueOf(key)){

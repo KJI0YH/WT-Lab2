@@ -8,6 +8,9 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
+/**
+ * Represents creator of a oven appliance
+ */
 public class OvenCreator implements ApplianceCreator {
     private static final String POWER_CONSUMPTION = "powerConsumption";
     private static final String WEIGHT = "weight";
@@ -16,6 +19,9 @@ public class OvenCreator implements ApplianceCreator {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appliance create(NodeList nodes) {
         Oven oven = new Oven();

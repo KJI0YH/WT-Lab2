@@ -8,6 +8,9 @@ import org.w3c.dom.NodeList;
 
 import java.util.Locale;
 
+/**
+ * Represents creator of a vacuum cleaner appliance
+ */
 public class VacuumCleanerCreator implements ApplianceCreator {
 
     private static final String POWER_CONSUMPTION = "powerConsumption";
@@ -17,6 +20,9 @@ public class VacuumCleanerCreator implements ApplianceCreator {
     private static final String MOTOR_SPEED_REGULATION = "motorSpeedRegulation";
     private static final String CLEANING_WIDHT = "cleaningWidth";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appliance create(NodeList nodes) {
         VacuumCleaner vacuumCleaner = new VacuumCleaner();

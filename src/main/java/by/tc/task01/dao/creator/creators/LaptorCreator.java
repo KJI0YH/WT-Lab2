@@ -6,6 +6,9 @@ import by.tc.task01.entity.Laptop;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/**
+ * Represents creator of a laptop appliance
+ */
 public class LaptorCreator implements ApplianceCreator {
 
     private static final String BATTERY_CAPACITY = "batteryCapacity";
@@ -15,7 +18,9 @@ public class LaptorCreator implements ApplianceCreator {
     private static final String CPU = "cpu";
     private static final String DISPLAY_INCHS = "displayInchs";
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appliance create(NodeList nodes) {
         Laptop laptop = new Laptop();

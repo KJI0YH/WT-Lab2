@@ -10,8 +10,15 @@ import by.tc.task01.service.ServiceFactory;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * Main class of a console program
+ */
 public class Main {
 
+	/**
+	 * Mait method
+	 * @param args console arguments
+	 */
 	public static void main(String[] args) {
 		List<Appliance> appliances;
 

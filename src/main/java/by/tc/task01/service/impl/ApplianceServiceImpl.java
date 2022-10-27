@@ -9,8 +9,15 @@ import by.tc.task01.service.validation.Validator;
 
 import java.util.List;
 
+/**
+ * Implementation of appliance service that works with
+ * appliance dao implementation
+ */
 public class ApplianceServiceImpl implements ApplianceService{
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<Appliance> find(Criteria criteria) {
 		if (!Validator.criteriaValidator(criteria)) {

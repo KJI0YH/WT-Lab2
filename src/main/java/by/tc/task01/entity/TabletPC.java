@@ -5,6 +5,9 @@ import by.tc.task01.entity.criteria.SearchCriteria;
 import java.awt.*;
 import java.util.Locale;
 
+/**
+ * Represents the tablet PC appliance
+ */
 public class TabletPC extends Appliance{
 
     public int battery_capacity;
@@ -24,6 +27,9 @@ public class TabletPC extends Appliance{
                 battery_capacity, display_inches, memory_rom, flash_memory_capacity, color.toString());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean mathches(String key, Object value) {
         Color clr = null;

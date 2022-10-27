@@ -17,10 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Implementation of an appiance dao that reads
+ * the information from file in resources folder
+ */
 public class ApplianceDAOImpl implements ApplianceDAO{
 
 	private static final String APPLIANCES_DB = "./src/main/resources/appliances_db.xml";
 
+	/**
+	 * {@inheritDoc}
+	 * Assumes that file is in the correct format
+	 */
 	@Override
 	public List<Appliance> find(Criteria criteria) {
 		List<Appliance> matches = new ArrayList<>();

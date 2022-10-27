@@ -8,6 +8,9 @@ import org.w3c.dom.NodeList;
 
 import javax.naming.CompositeName;
 
+/**
+ * Represents creator of a refrigerator appliance
+ */
 public class RefrigeratorCreator implements ApplianceCreator {
 
     private static final String POWER_CONSUMPTION = "powerConsumption";
@@ -17,6 +20,9 @@ public class RefrigeratorCreator implements ApplianceCreator {
     private static final String HEIGHT = "height";
     private static final String WIDTH = "width";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Appliance create(NodeList nodes) {
         Refrigerator refrigerator = new Refrigerator();
