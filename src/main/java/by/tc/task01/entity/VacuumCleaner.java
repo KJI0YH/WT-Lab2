@@ -1,5 +1,7 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+
 public class VacuumCleaner extends Appliance{
 
     public enum FilterType{
@@ -27,7 +29,14 @@ public class VacuumCleaner extends Appliance{
 
     @Override
     public boolean mathches(String key, Object value) {
-        return false;
+        return switch (SearchCriteria.VacuumCleaner.valueOf(key)){
+            case POWER_CONSUMPTION -> power_consumption == (Integer)value;
+            case FILTER_TYPE -> filter_type == FilterType.valueOf((String) value);
+            case BAG_TYPE -> bag_type.equals(value);
+            case WAND_TYPE -> wand_type.equals(value);
+            case MOTOR_SPEED_REGULATION -> motor_speed_regulation == (Integer)value;
+            case CLEANING_WIDTH -> cleaning_width == (Integer)value;
+        };
     }
     // you may add your own code here
 }

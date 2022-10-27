@@ -1,5 +1,7 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+
 public class Speakers extends Appliance{
 
     public int power_consumption;
@@ -19,7 +21,12 @@ public class Speakers extends Appliance{
 
     @Override
     public boolean mathches(String key, Object value) {
-        return false;
+        return switch (SearchCriteria.Speakers.valueOf(key)){
+            case POWER_CONSUMPTION -> power_consumption == (Integer)value;
+            case NUMBER_OF_SPEAKERS -> number_of_speakers == (Integer)value;
+            case FREQUENCY_RANGE -> frequency_range.equals(value);
+            case CORD_LENGTH -> cord_length == (Integer)value;
+        };
     }
     // you may add your own code here
 }

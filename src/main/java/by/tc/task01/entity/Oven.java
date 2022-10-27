@@ -1,5 +1,7 @@
 package by.tc.task01.entity;
 
+import by.tc.task01.entity.criteria.SearchCriteria;
+
 public class Oven extends Appliance{
 
     public int power_constumption;
@@ -23,6 +25,13 @@ public class Oven extends Appliance{
 
     @Override
     public boolean mathches(String key, Object value) {
-        return false;
+        return switch (SearchCriteria.Oven.valueOf(key)){
+            case POWER_CONSUMPTION -> power_constumption == (Integer)value;
+            case WEIGHT -> weight == (Integer)value;
+            case CAPACITY -> capacity == (Integer)value;
+            case DEPTH -> depth == (Integer)value;
+            case HEIGHT -> height == Double.parseDouble(String.valueOf(value));
+            case WIDTH -> width == Double.parseDouble(String.valueOf(value));
+        };
     }
 }
