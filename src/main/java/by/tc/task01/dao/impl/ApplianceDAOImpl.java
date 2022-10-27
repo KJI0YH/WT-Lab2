@@ -1,6 +1,8 @@
 package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
+import by.tc.task01.dao.creator.ApplianceCreator;
+import by.tc.task01.dao.creator.ApplianceCreatorFactory;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 import org.w3c.dom.Document;
@@ -11,6 +13,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class ApplianceDAOImpl implements ApplianceDAO{
 
@@ -18,6 +23,7 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 
 	@Override
 	public Appliance find(Criteria criteria) {
+		List<Appliance> matches = new ArrayList<>();
 		try{
 
 			// Create document builder
@@ -36,22 +42,37 @@ public class ApplianceDAOImpl implements ApplianceDAO{
 				Node node = nodes.item(i);
 				if (node.getNodeType() == Node.ELEMENT_NODE){
 					if (node.getNodeName().equalsIgnoreCase(criteria.getGroupSearchName())){
+						ApplianceCreator ac = ApplianceCreatorFactory.getInstance().getCreator(node.getNodeName());
+						Appliance appliance = ac.create(node.getChildNodes());
 
+						Map<String, Object> criterias = criteria.getSearchCriteria();
+						boolean isValid = true;
 
+						for (Map.Entry<String, Object> entry: criterias.entrySet()){
+							String key = entry.getKey();
+							Object value = entry.getValue();
 
-						//todo
-						//appliance creator factory
-						//matches checker criterias
+							if (!appliance.mathches(key, value)){
+								isValid = false;
+								break;
+							}
+						}
+
+						if (isValid){
+							matches.add(appliance);
+						}
 					}
-
-
 				}
 			}
 		}
 		catch (Exception e){
 			return null;
 		}
-		return null;
+		if (matches.size() != 0)
+			return matches.get(0);
+		else
+			return null;
+
 	}
 	
 	// you may add your own code here
